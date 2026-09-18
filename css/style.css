@@ -710,14 +710,15 @@ a.info-card:hover{ border-color: var(--red); transform: translateX(6px); backgro
 .scroll-top-fab{
   position: fixed; bottom: 22px; right: 22px; z-index: 400;
   width: 48px; height: 48px; border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border: 1.5px solid var(--steel);
   color: var(--text);
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 24px -8px rgba(0,0,0,.6);
   opacity: 0; visibility: hidden; transform: translateY(12px);
   transition: opacity .35s var(--ease), transform .35s var(--ease), visibility .35s, border-color .3s ease, color .3s ease;
 }
-.scroll-top-fab svg{ width: 18px; height: 18px; }
+.scroll-top-fab svg{ width: 20px; height: 20px; stroke-width: 2.6; }
 .scroll-top-fab.is-visible{ opacity: 1; visibility: visible; transform: translateY(0); }
 .scroll-top-fab:hover{ border-color: var(--red); color: var(--red); }
 
@@ -736,8 +737,11 @@ a.info-card:hover{ border-color: var(--red); transform: translateX(6px); backgro
   .services__grid{ grid-template-columns: repeat(2, 1fr); }
   .gallery__grid{ grid-template-columns: repeat(2, 1fr); }
   .mobile-call-fab{ display: flex; }
-  /* keep the scroll-to-top button clear of the floating call button */
-  .scroll-top-fab{ bottom: 90px; width: 44px; height: 44px; }
+  /* keep the scroll-to-top button clear of the floating call button, and
+     center it on the call button's horizontal center (56px button at
+     right:22px has its center at 50px from the edge; a 44px button needs
+     right:28px to share that same center) */
+  .scroll-top-fab{ bottom: 90px; right: 28px; width: 44px; height: 44px; }
 }
 
 @media (max-width: 620px){
@@ -749,6 +753,13 @@ a.info-card:hover{ border-color: var(--red); transform: translateX(6px); backgro
   .footer__grid{ grid-template-columns: 1fr; gap: 32px; }
   .cta-strip__inner{ flex-direction: column; align-items: flex-start; }
   .eyebrow--hero{ font-size: .58rem; letter-spacing: .1em; }
+
+  /* On short mobile viewports, centering .hero__content vertically can
+     shrink the gap above it enough that the title collides with the
+     absolutely-positioned ticker. Top-align instead so the clearance
+     below the ticker stays constant no matter the viewport height. */
+  .hero{ justify-content: flex-start; }
+  .hero__content{ padding-top: 138px; }
 }
 
 @media (prefers-reduced-motion: reduce){
