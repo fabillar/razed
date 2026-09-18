@@ -142,6 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Floating scroll-to-top button ---------- */
+  const scrollTopFab = document.getElementById('scrollTopFab');
+  if (scrollTopFab) {
+    const toggleScrollTopFab = () => {
+      scrollTopFab.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    toggleScrollTopFab();
+    window.addEventListener('scroll', toggleScrollTopFab, { passive: true });
+    scrollTopFab.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
