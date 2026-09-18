@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Mobile menu ---------- */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
   const toggleMenu = () => {
     const open = mobileMenu.classList.toggle('is-open');
     hamburger.classList.toggle('is-open', open);
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = open ? 'hidden' : '';
   };
   hamburger.addEventListener('click', toggleMenu);
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', toggleMenu);
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     if (mobileMenu.classList.contains('is-open')) toggleMenu();
   }));

@@ -312,6 +312,15 @@ svg{ width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.
   transition: transform .5s var(--ease);
 }
 .mobile-menu.is-open{ transform: translateY(0); }
+.mobile-menu__close{
+  position: absolute; top: 22px; right: 20px; z-index: 1;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+  transition: color .3s ease, transform .35s var(--ease);
+}
+.mobile-menu__close svg{ width: 26px; height: 26px; stroke-width: 2; }
+.mobile-menu__close:hover{ color: var(--red); transform: rotate(90deg); }
 .mobile-menu ul{ display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .mobile-link{
   font-family: var(--font-display);
@@ -754,12 +763,14 @@ a.info-card:hover{ border-color: var(--red); transform: translateX(6px); backgro
   .cta-strip__inner{ flex-direction: column; align-items: flex-start; }
   .eyebrow--hero{ font-size: .58rem; letter-spacing: .1em; }
 
-  /* On short mobile viewports, centering .hero__content vertically can
-     shrink the gap above it enough that the title collides with the
-     absolutely-positioned ticker. Top-align instead so the clearance
-     below the ticker stays constant no matter the viewport height. */
-  .hero{ justify-content: flex-start; }
-  .hero__content{ padding-top: 138px; }
+  /* Bottom-align the hero content on mobile so it hugs the bottom of
+     whatever height the device actually has (100svh on .hero already
+     tracks the real visible viewport), instead of floating wherever
+     vertical centering happens to land it. Enough top padding is kept
+     so tall content never reaches up into the ticker, and enough
+     bottom padding keeps it clear of the fixed call button. */
+  .hero{ justify-content: flex-end; }
+  .hero__content{ padding-top: 138px; padding-bottom: 128px; }
 }
 
 @media (prefers-reduced-motion: reduce){
